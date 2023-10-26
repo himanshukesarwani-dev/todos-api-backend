@@ -13,11 +13,14 @@
     "ecmaVersion": "latest",
     "sourceType": "module"
   },
-  "plugins": ["@typescript-eslint"],
+  "plugins": ["prettier"],
   "rules": {
     "indent": ["error", 2],
     "linebreak-style": ["error", "windows"],
     "quotes": ["error", "double"],
-    "semi": ["error", "always"]
-  }
+    "semi": ["error", "always"],
+    "prettier/prettier": ["error", { "endOfLine": "auto" }]
+  },
+
+  "extends": ["plugin:prettier/recommended"]
 }

@@ -1,4 +1,5 @@
 import { z } from "zod";
+
 const todoSchema = z.object({
   id: z
     .number({
@@ -14,12 +15,13 @@ const todoSchema = z.object({
     .string()
     .min(5, "Description must be minimum 5 characters long.")
     .max(30, "Description must be maximum of 30 characters."),
-  dueDate: z
-    .string()
-    .regex(
-      /^\d{4}-\d{2}-\d{2}$/,
-      "Due Date must be in the format 'YYYY-MM-DD'.",
-    ),
+
+  dueDate: z.string().regex(
+    /^\d{4}-\d{2}-\d{2}$/,
+    // eslint-disable-next-line prettier/prettier
+    "Due Date must be in the format 'YYYY-MM-DD'.",
+  ),
+
   createdAt: z.string().refine((value) => {
     const date = new Date(value);
     return !isNaN(date.getTime());
@@ -29,4 +31,5 @@ const todoSchema = z.object({
     return !isNaN(date.getTime());
   }, "Invalid date format for updatedAt."),
 });
+
 export { todoSchema };
