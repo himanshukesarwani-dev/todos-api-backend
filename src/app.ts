@@ -6,4 +6,4 @@ type todoType = z.infer<typeof todoSchema>;
 const filename = "db.json";
 const db = await JSONPreset(filename, { todos: [] });
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-const todos1: todoType[] = db.data.todos;
+const allTodos: todoType[] = db.data.todos;
