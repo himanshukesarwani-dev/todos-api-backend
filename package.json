@@ -1,50 +1,59 @@
 {
   "name": "todo-api",
   "version": "1.0.0",
-  "description": "",
-  "exports": "./dist/app.js",
+  "description": "This is a small api backend project for Todos. It can perform CRUD operations and uses API based key for authentication. -",
+  "main": "app.js",
   "type": "module",
   "engines": {
     "node": ">=16"
   },
   "scripts": {
-    "test": "vitest",
-    "dev": "nodemon ./dist/app.js",
-    "prepare": "husky install"
-  },
-  "lint-staged": {
-    "**/*.{js,jsx,ts,tsx}": [
-      "npx prettier --write",
-      "npx eslint --fix"
-    ]
+    "build": "npx tsc",
+    "prod": "npx tsc && node dist/app.js",
+    "dev": "nodemon dist/app.js",
+    "format": "prettier --ignore-path .gitignore --write src/**/*.ts",
+    "prepare": "husky install",
+    "lint": "eslint",
+    "lint-staged": "lint-staged"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@types/body-parser": "^1.19.4",
     "@types/express": "^4.17.20",
     "@types/node": "^20.8.7",
-    "body-parser": "^1.20.2",
+    "dotenv": "^16.3.1",
     "express": "^4.18.2",
-    "lowdb": "^6.1.0",
-    "lowdb-node": "^3.0.2",
-    "morgan": "^1.10.0",
-    "ts-node": "^10.9.1",
-    "typescript": "^5.2.2",
+    "jsonwebtoken": "^9.0.2",
+    "lodash-id": "^0.14.1",
+    "lowdb": "^6.1.1",
     "zod": "^3.22.4"
   },
   "devDependencies": {
-    "@types/lowdb": "^1.0.14",
-    "@types/morgan": "^1.9.7",
+    "@commitlint/cli": "^17.8.0",
+    "@commitlint/config-conventional": "^17.8.0",
+    "@types/jsonwebtoken": "^9.0.4",
     "@typescript-eslint/eslint-plugin": "^6.9.0",
-    "@typescript-eslint/parser": "^6.9.0",
+    "@typescript-eslint/parser": "^6.8.0",
     "eslint": "^8.52.0",
-    "eslint-config-prettier": "9.0.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-config-standard-with-typescript": "^39.1.1",
+    "eslint-plugin-import": "^2.29.0",
+    "eslint-plugin-n": "^16.2.0",
+    "eslint-plugin-prettier": "^5.0.1",
+    "eslint-plugin-promise": "^6.1.1",
     "husky": "^8.0.0",
     "lint-staged": "^15.0.2",
-    "nodemon": "^3.0.1",
-    "prettier": "3.0.3",
+    "prettier": "^3.0.3",
+    "supertest": "^6.3.3",
+    "typescript": "^5.2.2",
     "vitest": "^0.34.6"
+  },
+  "lint-staged": {
+    "**/*.{ts}": [
+      "eslint",
+      "prettier --write"
+    ]
   }
 }
