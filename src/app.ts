@@ -1,9 +1,49 @@
+/* eslint-disable @typescript-eslint/comma-dangle */
+/* eslint-disable @typescript-eslint/quotes */
+/* eslint-disable @typescript-eslint/semi */
+
+import express, { type Request, type Response } from "express";
+
 import { z } from "zod";
 import { JSONPreset } from "lowdb/node";
 import { todoSchema } from "./todoSchema.js";
 
+const app = express();
+const PORT = process.env.PORT || 3000;
+app.use(express.json());
+
 type todoType = z.infer<typeof todoSchema>;
 const filename = "db.json";
 const db = await JSONPreset(filename, { todos: [] });
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const todos1: todoType[] = db.data.todos;
+const allTodos: todoType[] = db.data.todos;
+
+app.post("/todos", (req: Request, res: Response) => {
+  const { description, title, dueDate } = req.body;
+  const id = allTodos.length + 1;
+  const createdAt = new Date().toISOString();
+  const updatedAt = createdAt;
+
+  const todo: todoType = {
+    id,
+    title,
+    description,
+    dueDate,
+    createdAt,
+    updatedAt,
+  };
+
+  const dataValidated = todoSchema.safeParse(todo);
+  console.log(dataValidated);
+
+  if (dataValidated.success) {
+    allTodos.push(todo);
+    db.write();
+    res.status(201).json(dataValidated.data);
+  } else {
+    res.status(400).json(dataValidated.error);
+  }
+});
+
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
+});
