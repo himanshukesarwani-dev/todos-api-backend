@@ -1,3 +1,4 @@
+/* eslint-disable indent */
 /* eslint-disable linebreak-style */
 /* eslint-disable @typescript-eslint/comma-dangle */
 /* eslint-disable @typescript-eslint/quotes */
@@ -58,6 +59,26 @@ app.get("/todos/:id", (req, res) => {
         res.status(404).json({
             message: `Error! Requested Todo with ${queryId} doesn't exist.`,
         });
+    }
+});
+// Update a existing TODO using PUT.
+app.put("/todos/:id", (req, res) => {
+    const id = Number(req.params.id);
+    const { title, description, dueDate } = req.body;
+    const queryTodo = allTodos.find((todo) => todo.id === id);
+    if (queryTodo) {
+        const dataValidated = todoSchema.safeParse(queryTodo);
+        if (dataValidated.success) {
+            (queryTodo.title = title),
+                (queryTodo.description = description),
+                (queryTodo.dueDate = dueDate),
+                (queryTodo.updatedAt = new Date().toISOString());
+            db.write();
+            res.status(200).json(dataValidated.data);
+        }
+        else {
+            res.status(404).json({ error: "Error Not Found" });
+        }
     }
 });
 // server
