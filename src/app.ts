@@ -97,6 +97,23 @@ app.put("/todos/:id", (req: Request, res: Response) => {
   }
 });
 
+// Delete a Todo
+
+app.delete("/todos/:id", (req: Request, res: Response) => {
+  const id = Number(req.params.id);
+  const selectedIndex = allTodos.findIndex((item) => item.id === id);
+  console.log(selectedIndex);
+  if (selectedIndex !== -1) {
+    allTodos.splice(selectedIndex, 1);
+    db.write();
+    res
+      .status(204)
+      .json({ message: `Todo with id ${id + 1} deleted successfully` });
+  } else {
+    res.status(404).json({ error: "Error! Cannot delete the todo" });
+  }
+});
+
 // server
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
