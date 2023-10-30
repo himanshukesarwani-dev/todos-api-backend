@@ -1,3 +1,4 @@
+/* eslint-disable linebreak-style */
 /* eslint-disable @typescript-eslint/comma-dangle */
 /* eslint-disable @typescript-eslint/quotes */
 /* eslint-disable @typescript-eslint/semi */
