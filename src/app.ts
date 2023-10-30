@@ -1,3 +1,4 @@
+/* eslint-disable linebreak-style */
 /* eslint-disable @typescript-eslint/comma-dangle */
 /* eslint-disable @typescript-eslint/quotes */
 /* eslint-disable @typescript-eslint/semi */
@@ -16,6 +17,8 @@ type todoType = z.infer<typeof todoSchema>;
 const filename = "db.json";
 const db = await JSONPreset(filename, { todos: [] });
 const allTodos: todoType[] = db.data.todos;
+
+// POST todo API
 
 app.post("/todos", (req: Request, res: Response) => {
   const { description, title, dueDate } = req.body;
@@ -44,6 +47,18 @@ app.post("/todos", (req: Request, res: Response) => {
   }
 });
 
+// GET all Todos API
+app.get("/todos", (req: Request, res: Response) => {
+  if (allTodos.length != 0) {
+    res.status(200).json(allTodos);
+  } else {
+    res.status(404).json({
+      message: "Error! No Todos Found",
+    });
+  }
+});
+
+// server
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });

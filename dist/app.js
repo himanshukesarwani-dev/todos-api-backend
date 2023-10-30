@@ -1,3 +1,4 @@
+/* eslint-disable linebreak-style */
 /* eslint-disable @typescript-eslint/comma-dangle */
 /* eslint-disable @typescript-eslint/quotes */
 /* eslint-disable @typescript-eslint/semi */
@@ -10,6 +11,7 @@ app.use(express.json());
 const filename = "db.json";
 const db = await JSONPreset(filename, { todos: [] });
 const allTodos = db.data.todos;
+// POST todo API
 app.post("/todos", (req, res) => {
     const { description, title, dueDate } = req.body;
     const id = allTodos.length + 1;
@@ -34,6 +36,18 @@ app.post("/todos", (req, res) => {
         res.status(400).json(dataValidated.error);
     }
 });
+// GET all Todos API
+app.get("/todos", (req, res) => {
+    if (allTodos.length != 0) {
+        res.status(200).json(allTodos);
+    }
+    else {
+        res.status(404).json({
+            message: "Error! No Todos Found",
+        });
+    }
+});
+// server
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
 });
