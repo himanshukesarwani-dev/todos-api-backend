@@ -58,6 +58,21 @@ app.get("/todos", (req: Request, res: Response) => {
   }
 });
 
+// GET a particular todo by its id.
+
+app.get("/todos/:id", (req: Request, res: Response) => {
+  const queryId = req.params.id;
+  const queryTodo = allTodos.find((todo) => todo.id === Number(queryId));
+
+  if (queryTodo) {
+    res.status(200).json(queryTodo);
+  } else {
+    res.status(404).json({
+      message: `Error! Requested Todo with ${queryId} doesn't exist.`,
+    });
+  }
+});
+
 // server
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
