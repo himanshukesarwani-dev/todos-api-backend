@@ -6,8 +6,8 @@ const todoSchema = z.object({
   title: z.string(),
   description: z.string(),
   dueDate: z.string(),
-  createdAt: z.string(),
-  updatedAt: z.string(),
+  createdAt: z.string().datetime(),
+  updatedAt: z.string().datetime(),
 });
 
 export { todoSchema };
