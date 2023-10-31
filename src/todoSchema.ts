@@ -2,7 +2,12 @@
 import { z } from "zod";
 
 const todoSchema = z.object({
-  id: z.number().int("Id must be an Integer."),
+  id: z
+    .number({
+      required_error: "Id is required",
+      invalid_type_error: "Id must be a integer",
+    })
+    .int(),
   title: z.string().min(2, "Title must be minimum 2 characters long."),
   description: z
     .string()
