@@ -14,7 +14,8 @@
     "format": "prettier --ignore-path .gitignore --write src/**/*.ts",
     "prepare": "husky install",
     "lint": "eslint",
-    "lint-staged": "lint-staged"
+    "lint-staged": "lint-staged",
+    "test": "vitest"
   },
   "keywords": [],
   "author": "",
