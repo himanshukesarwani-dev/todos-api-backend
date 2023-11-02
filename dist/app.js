@@ -94,7 +94,9 @@ app.delete("/todos/:id", (req, res) => {
             .json({ message: `Todo with id ${id + 1} deleted successfully` });
     }
     else {
-        res.status(404).json({ error: "Error! Cannot delete the todo" });
+        res
+            .status(404)
+            .json({ error: "We cannot find the todo with the given ID" });
     }
 });
 // server
