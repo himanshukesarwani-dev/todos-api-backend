@@ -14,10 +14,10 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 app.use(express.json());
 
-type todoType = z.infer<typeof todoSchema>;
+type TodoType = z.infer<typeof todoSchema>;
 const filename = "db.json";
 const db = await JSONPreset(filename, { todos: [] });
-const allTodos: todoType[] = db.data.todos;
+const allTodos: TodoType[] = db.data.todos;
 
 // POST todo API
 
@@ -27,7 +27,7 @@ app.post("/todos", (req: Request, res: Response) => {
   const createdAt = new Date().toISOString();
   const updatedAt = createdAt;
 
-  const todo: todoType = {
+  const todo: TodoType = {
     id,
     title,
     description,
