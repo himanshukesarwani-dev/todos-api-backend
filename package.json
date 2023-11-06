@@ -27,6 +27,7 @@
     "jsonwebtoken": "^9.0.2",
     "lodash-id": "^0.14.1",
     "lowdb": "^6.1.1",
+
     "zod": "^3.22.4"
   },
   "devDependencies": {

@@ -17,6 +17,7 @@ app.use(express.json());
 type todoType = z.infer<typeof todoSchema>;
 const filename = "db.json";
 const db = await JSONPreset(filename, { todos: [] });
+
 const allTodos: todoType[] = db.data.todos;
 
 // POST todo API
@@ -118,3 +119,5 @@ app.delete("/todos/:id", (req: Request, res: Response) => {
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
+
+
