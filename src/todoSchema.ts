@@ -2,11 +2,22 @@
 import { z } from "zod";
 
 const todoSchema = z.object({
-  id: z.number().int("Id must be an Integer."),
-  title: z.string().min(2, "Title must be minimum 2 characters long."),
+  id: z
+    .number({
+      required_error: "Id is required",
+      invalid_type_error: "Id must be a integer",
+    })
+    .int(),
+  title: z
+    .string()
+    .min(2, "Title must be minimum 2 characters long.")
+    .max(20, "Title must be maximum of 20 characters."),
   description: z
     .string()
-    .min(5, "Description must be minimum 5 characters long."),
+    .min(5, "Description must be minimum 5 characters long.")
+    .max(30, "Description must be maximum of 30 characters."),
+
+
   dueDate: z
     .string()
     .regex(

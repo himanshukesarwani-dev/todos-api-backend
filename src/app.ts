@@ -14,11 +14,12 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 app.use(express.json());
 
-type todoType = z.infer<typeof todoSchema>;
+
+type TodoType = z.infer<typeof todoSchema>;
 const filename = "db.json";
 const db = await JSONPreset(filename, { todos: [] });
+const allTodos: TodoType[] = db.data.todos;
 
-const allTodos: todoType[] = db.data.todos;
 
 // POST todo API
 
@@ -28,7 +29,8 @@ app.post("/todos", (req: Request, res: Response) => {
   const createdAt = new Date().toISOString();
   const updatedAt = createdAt;
 
-  const todo: todoType = {
+  const todo: TodoType = {
+
     id,
     title,
     description,
@@ -111,7 +113,10 @@ app.delete("/todos/:id", (req: Request, res: Response) => {
       .status(204)
       .json({ message: `Todo with id ${id + 1} deleted successfully` });
   } else {
-    res.status(404).json({ error: "Error! Cannot delete the todo" });
+    res
+      .status(404)
+      .json({ error: "We cannot find the todo with the given ID" });
+
   }
 });
 
@@ -119,5 +124,4 @@ app.delete("/todos/:id", (req: Request, res: Response) => {
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
-
 
