@@ -76,4 +76,16 @@ export class TodoManager {
     const allTodos = await this.db.data.todos;
     return allTodos;
   }
+
+  /**
+   * get a todo takes query id and returns that todo from the database.
+   * @param id number
+   * @returns todo if todo is found in the database, else returns undefined.
+   */
+  async getATodo(id: number): Promise<Todo | undefined> {
+    await this.db.read();
+    const allTodos = this.db.data.todos;
+    const todo = allTodos.find((todo) => todo.id === id);
+    return todo;
+  }
 }

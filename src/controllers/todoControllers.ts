@@ -49,3 +49,18 @@ export const getAllTodos = async (req: Request, res: Response) => {
     res.status(404).json({ error: "Error! No Todos Found" });
   }
 };
+
+// Get a Todo
+export const getATodo = async (req: Request, res: Response) => {
+  const queryId = Number(req.params.id);
+  try {
+    // console.log(queryId);
+    const todoManager = TodoManager.getInstance();
+    const todo = await todoManager.getATodo(queryId);
+    res.status(200).json(todo);
+  } catch (error) {
+    res
+      .status(404)
+      .json({ error: `Error! Requested Todo with ${queryId} doesn't exist.` });
+  }
+};
