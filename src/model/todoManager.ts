@@ -66,4 +66,14 @@ export class TodoManager {
     const length = this.db.data.todos.length;
     return length;
   }
+  /**
+   * getAllTodos gets all the todos from database and returns it.
+   * @returns total todos
+   */
+
+  async getAllTodos(): Promise<Todo[]> {
+    await this.db.read();
+    const allTodos = await this.db.data.todos;
+    return allTodos;
+  }
 }

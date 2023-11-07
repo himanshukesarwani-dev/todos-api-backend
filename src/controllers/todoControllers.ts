@@ -34,3 +34,18 @@ export const createTodo = async (req: Request, res: Response) => {
     res.status(400).json({ error: "Cannot create Todo" });
   }
 };
+
+// Get All Todos
+
+export const getAllTodos = async (req: Request, res: Response) => {
+  try {
+    const todoManager = TodoManager.getInstance();
+    const length = await todoManager.getLengthOfTodos();
+    const allTodos = await todoManager.getAllTodos();
+    if (length !== 0) {
+      res.status(200).json(allTodos);
+    }
+  } catch (error) {
+    res.status(404).json({ error: "Error! No Todos Found" });
+  }
+};
