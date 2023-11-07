@@ -2,6 +2,7 @@ import { Low } from "lowdb";
 import { JSONFile } from "lowdb/node";
 import { z } from "zod";
 import { todoSchema } from "../model/todoSchema.js";
+import { deleteTodo } from "../controllers/todoControllers.js";
 
 type Todo = z.infer<typeof todoSchema>;
 export interface AllTodosType {
@@ -109,5 +110,20 @@ export class TodoManager {
     todoToUpdate.updatedAt = todo.updatedAt;
     await this.db.write();
     return todoToUpdate;
+  }
+
+  /**
+   * deleteTodo takes a todo id and deletes that todo from the database.
+   * @param id todo id
+   * returns a void promise.
+   */
+  async deleteTodo(id: number): Promise<void> {
+    await this.db.read();
+    const indexToDelete = this.db.data.todos.findIndex(
+      // eslint-disable-next-line prettier/prettier
+      (todo) => todo.id === id,
+    );
+    this.db.data.todos.splice(indexToDelete, 1);
+    await this.db.write();
   }
 }

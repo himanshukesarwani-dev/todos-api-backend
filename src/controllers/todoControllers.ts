@@ -97,3 +97,24 @@ export const updateTodo = async (req: Request, res: Response) => {
     res.status(500).json({ error: "Todo cannot be updated!" });
   }
 };
+
+// delete a todo
+export const deleteTodo = async (req: Request, res: Response) => {
+  const id = Number(req.params.id);
+
+  try {
+    const todoManager = TodoManager.getInstance();
+    const existingTodo = await todoManager.getATodo(id);
+
+    if (existingTodo) {
+      await todoManager.deleteTodo(id);
+      res
+        .status(200)
+        .json({ message: `todo deleted successfully with id ${id}` });
+    } else {
+      res.status(404).json({ error: "Cannot find the Todo!" });
+    }
+  } catch (error) {
+    res.status(404).json({ error: "Cannot find the todo!" });
+  }
+};
