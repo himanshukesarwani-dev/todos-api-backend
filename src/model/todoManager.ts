@@ -88,6 +88,12 @@ export class TodoManager {
     const todo = allTodos.find((todo) => todo.id === id);
     return todo;
   }
+  /**
+   * updateTodo method updates a existing todo with the new todo data.
+   * @param id todo Id
+   * @param todo updated Todo Values
+   * @returns todo with updated values.
+   */
 
   async updateTodo(id: number, todo: Todo): Promise<Todo> {
     await this.db.read();
