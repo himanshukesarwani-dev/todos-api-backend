@@ -88,4 +88,20 @@ export class TodoManager {
     const todo = allTodos.find((todo) => todo.id === id);
     return todo;
   }
+
+  async updateTodo(id: number, todo: Todo): Promise<Todo> {
+    await this.db.read();
+    const todoToUpdate = this.db.data.todos.find(
+      // eslint-disable-next-line prettier/prettier
+      (dbTodo) => dbTodo.id === id,
+    ) as Todo;
+
+    todoToUpdate.title = todo.title;
+    todoToUpdate.description = todo.description;
+    todoToUpdate.dueDate = todo.dueDate;
+    todoToUpdate.createdAt = todo.createdAt;
+    todoToUpdate.updatedAt = todo.updatedAt;
+    await this.db.write();
+    return todoToUpdate;
+  }
 }

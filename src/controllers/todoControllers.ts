@@ -1,4 +1,4 @@
-import { z } from "zod";
+import { string, z } from "zod";
 
 import { TodoManager } from "../model/todoManager.js";
 import { todoSchema } from "../model/todoSchema.js";
@@ -62,5 +62,38 @@ export const getATodo = async (req: Request, res: Response) => {
     res
       .status(404)
       .json({ error: `Error! Requested Todo with ${queryId} doesn't exist.` });
+  }
+};
+
+// Update a Todo
+export const updateTodo = async (req: Request, res: Response) => {
+  const id = Number(req.params.id);
+  console.log(req.body);
+
+  try {
+    const todoManager = TodoManager.getInstance();
+    const existingTodo = await todoManager.getATodo(id);
+    // console.log("existing todo=> ", existingTodo);
+
+    const { title, description, dueDate } = req.body;
+
+    if (existingTodo) {
+      const todo: Todo = {
+        id,
+        title,
+        description,
+        dueDate,
+        createdAt: existingTodo.createdAt,
+        updatedAt: existingTodo.updatedAt,
+      };
+
+      const updatedTodo = await todoManager.updateTodo(id, todo);
+      // console.log("updatedTodo Data ", updatedTodo);
+      res.status(200).json(updatedTodo);
+    } else {
+      res.status(404).json({ error: "Todo not found." });
+    }
+  } catch (error) {
+    res.status(500).json({ error: "Todo cannot be updated!" });
   }
 };

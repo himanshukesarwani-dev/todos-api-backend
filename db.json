@@ -1,20 +1,14 @@
 {
   "todos": [
     {
-      "id": 1,
       "title": "new on 30 oct",
-      "description": "Finish the report by 5 PM",
-      "dueDate": "2023-10-31",
-      "createdAt": "2023-10-30T05:03:37.524Z",
-      "updatedAt": "2023-10-30T05:03:37.524Z"
+      "description": "nesdfsdfw data",
+      "dueDate": "2023-10-31"
     },
     {
-      "id": 2,
       "title": "2 on 30 oct",
-      "description": "Finish the report by 5 PM",
-      "dueDate": "2023-10-31",
-      "createdAt": "2023-10-30T05:57:50.083Z",
-      "updatedAt": "2023-10-30T05:57:50.083Z"
+      "description": "nesdfsdfw data",
+      "dueDate": "2023-10-31"
     },
     {
       "id": 3,
@@ -26,31 +20,27 @@
     },
     {
       "id": 4,
-      "title": " todddddos",
-      "description": "new data",
-      "dueDate": "2023-10-31",
-      "createdAt": "2023-11-03T09:48:54.430Z",
-      "updatedAt": "2023-11-03T09:48:54.430Z"
+      "title": "title updated for id 4",
+      "description": "nesdfsdfw data",
+      "dueDate": "2023-10-31"
     },
     {
       "id": 5,
-      "title": " sdfsadfasf",
-      "description": "new data",
-      "dueDate": "2023-10-31",
-      "createdAt": "2023-11-03T09:48:59.875Z",
-      "updatedAt": "2023-11-03T09:48:59.875Z"
+      "title": "title updated for id 5",
+      "description": "nesdfsdfw data",
+      "dueDate": "2023-10-31"
     },
     {
       "id": 6,
-      "title": " sdfsadfasf",
-      "description": "new data",
+      "title": "title updated for id 6",
+      "description": "nesdfsdfw data",
       "dueDate": "2023-10-31",
       "createdAt": "2023-11-03T11:51:25.709Z",
       "updatedAt": "2023-11-03T11:51:25.709Z"
     },
     {
       "id": 7,
-      "title": " sdfsf",
+      "title": "title updated for id 7",
       "description": "new data",
       "dueDate": "2023-10-31",
       "createdAt": "2023-11-03T11:51:35.230Z",
@@ -89,12 +79,9 @@
       "updatedAt": "2023-11-03T11:58:12.351Z"
     },
     {
-      "id": 12,
       "title": "todocreated",
       "description": "nesdfsdfw data",
-      "dueDate": "2023-10-31",
-      "createdAt": "2023-11-03T11:58:21.401Z",
-      "updatedAt": "2023-11-03T11:58:21.401Z"
+      "dueDate": "2023-10-31"
     },
     {
       "id": 13,
