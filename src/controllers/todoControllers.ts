@@ -15,7 +15,7 @@ export const createTodo = async (req: Request, res: Response) => {
     const createdAt = new Date().toISOString();
     const updatedAt = createdAt;
 
-    const todoManager = TodoManager.getInstance();
+    const todoManager = new TodoManager();
     const id = (await todoManager.getLengthOfTodos()) + 1;
     console.log(id);
     const todo: Todo = {
@@ -48,7 +48,7 @@ export const createTodo = async (req: Request, res: Response) => {
 
 export const getAllTodos = async (req: Request, res: Response) => {
   try {
-    const todoManager = TodoManager.getInstance();
+    const todoManager = new TodoManager();
     const length = await todoManager.getLengthOfTodos();
     const allTodos = await todoManager.getAllTodos();
     if (length !== 0) {
