@@ -34,3 +34,29 @@ export const createTodo = async (req: Request, res: Response) => {
     res.status(400).json({ error: "Cannot create Todo" });
   }
 };
+
+/**
+ * Retrieves a list of all todos from the data source and sends a response with the todos in JSON format.
+ *
+ * @param {Request} req - The Express Request object, which contains information about the HTTP request.
+ * @param {Response} res - The Express Response object, used to send the HTTP response.
+ *
+ * @returns {Promise<void>} - A Promise that resolves with the response containing the list of todos.
+ *
+ * @throws {Error} - If an error occurs during the data retrieval process, an error response is sent.
+ */
+
+export const getAllTodos = async (req: Request, res: Response) => {
+  try {
+    const todoManager = TodoManager.getInstance();
+    const length = await todoManager.getLengthOfTodos();
+    const allTodos = await todoManager.getAllTodos();
+    if (length !== 0) {
+      res.status(200).json(allTodos);
+    } else {
+      res.status(404).json({ error: "Error! No Todos Found" });
+    }
+  } catch (error) {
+    res.status(404).json({ error: "Error! No Todos Found" });
+  }
+};
