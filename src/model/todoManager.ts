@@ -56,9 +56,10 @@ export class TodoManager {
    * getAllTodos gets all the todos from the database and returns them.
    * @returns a promise with the total todos in the database.
    */
-  async getAllTodos(): Promise<Todo[]> {
+  async getAllTodos(startIndex: number, endIndex: number): Promise<Todo[]> {
     await this.db.read();
     const allTodos = await this.db.data.todos;
-    return allTodos;
+    const selectedTodos = allTodos.slice(startIndex, endIndex);
+    return selectedTodos;
   }
 }
