@@ -62,4 +62,16 @@ export class TodoManager {
     const selectedTodos = allTodos.slice(startIndex, endIndex);
     return selectedTodos;
   }
+
+  /**
+   * getATodo takes todo id and returns that todo from the database.
+   * @param id - the todo id which we want to retrieve.
+   * @returns todo if todo is found in the database, else returns undefined.
+   */
+  async getATodo(id: number): Promise<Todo | undefined> {
+    await this.db.read();
+    const allTodos = this.db.data.todos;
+    const todo = allTodos.find((todo) => todo.id === id);
+    return todo;
+  }
 }

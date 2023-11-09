@@ -41,9 +41,6 @@ export const createTodo = async (req: Request, res: Response) => {
  *
  * @param {Request} req - The Express Request object, which contains information about the HTTP request.
  * @param {Response} res - The Express Response object, used to send the HTTP response.
- *
- * @returns {Promise<void>} - A Promise that resolves with the response containing the list of todos.
- *
  * @throws {Error} - If an error occurs during the data retrieval process, an error response is sent.
  */
 
@@ -80,5 +77,31 @@ export const getAllTodos = async (req: Request, res: Response) => {
     }
   } catch (error) {
     res.status(404).json({ error: "Error! No Todos Found" });
+  }
+};
+
+/**
+ * Retrieves a single todo based on the provided ID and sends a response with the todo in JSON format.
+ * If the specified todo does not exist, a 404 Not Found response is sent with an error message.
+ *
+ * @param {Request} req - The Express Request object, which contains information about the HTTP request, including the todo ID as a URL parameter.
+ * @param {Response} res - The Express Response object, used to send the HTTP response.
+ */
+export const getATodo = async (req: Request, res: Response) => {
+  const requestedTodo = Number(req.params.id);
+  try {
+    const todoManager = new TodoManager();
+    const todo = await todoManager.getATodo(requestedTodo);
+    if (todo) {
+      res.status(200).json(todo);
+    } else {
+      res.status(404).json({
+        error: `Error! Requested Todo with ID ${requestedTodo} doesn't exist.`,
+      });
+    }
+  } catch (error) {
+    res.status(500).json({
+      error: "An internal server error occurred while processing the request.",
+    });
   }
 };
