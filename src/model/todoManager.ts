@@ -64,8 +64,8 @@ export class TodoManager {
   }
 
   /**
-   * getATodo takes query id and returns that todo from the database.
-   * @param id number
+   * getATodo takes todo id and returns that todo from the database.
+   * @param id - the todo id which we want to retrieve.
    * @returns todo if todo is found in the database, else returns undefined.
    */
   async getATodo(id: number): Promise<Todo | undefined> {
