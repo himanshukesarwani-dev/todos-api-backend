@@ -9,27 +9,14 @@ export interface AllTodosType {
 }
 
 export class TodoManager {
-  private static instance: TodoManager;
   private readonly db: Low<AllTodosType>;
 
   /**
-   * Private constructor for initializing a database instance.
+   * Constructor for initializing a database instance.
    */
-  private constructor() {
+  constructor() {
     const adapter = new JSONFile<AllTodosType>("db.json");
     this.db = new Low(adapter, { todos: [] });
-  }
-
-  /** getInstance method
-   * Get a singleton instance of TodoManager.
-   * @returns {TodoManager} - The singleton instance of TodoManager.
-   */
-  static getInstance(): TodoManager {
-    if (this.instance) {
-      return this.instance;
-    }
-    this.instance = new TodoManager();
-    return this.instance;
   }
 
   /**
@@ -46,9 +33,7 @@ export class TodoManager {
    * Creates a new todo item and adds it to the database.
    * @param newTodo - The new todo item to be created.
    * @returns Promise resolving to true (success) if todo is created successfully.
-   *
    */
-
   async createTodo(newTodo: Todo): Promise<Todo> {
     await this.db.read();
     this.db.data.todos.push({ ...newTodo });
@@ -65,5 +50,16 @@ export class TodoManager {
     await this.db.read();
     const length = this.db.data.todos.length;
     return length;
+  }
+
+  /**
+   * getAllTodos gets all the todos from the database and returns them.
+   * @returns a promise with the total todos in the database.
+   */
+  async getAllTodos(startIndex: number, endIndex: number): Promise<Todo[]> {
+    await this.db.read();
+    const allTodos = await this.db.data.todos;
+    const selectedTodos = allTodos.slice(startIndex, endIndex);
+    return selectedTodos;
   }
 }

@@ -21,6 +21,12 @@ const todoSchema = z.object({
     // eslint-disable-next-line prettier/prettier
     "Due Date must be in the format 'YYYY-MM-DD'.",
   ),
+  completed: z
+    .boolean()
+    .default(false)
+    .refine((value) => typeof value === "boolean", {
+      message: "completed can only be a boolean",
+    }),
 
   createdAt: z.string().refine((value) => {
     const date = new Date(value);
