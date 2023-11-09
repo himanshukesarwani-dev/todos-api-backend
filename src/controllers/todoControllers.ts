@@ -86,7 +86,6 @@ export const getAllTodos = async (req: Request, res: Response) => {
  *
  * @param {Request} req - The Express Request object, which contains information about the HTTP request, including the todo ID as a URL parameter.
  * @param {Response} res - The Express Response object, used to send the HTTP response.
- * @throws {Error} - If an error occurs during the data retrieval process, an error response is sent with a 404 status code.
  */
 export const getATodo = async (req: Request, res: Response) => {
   const requestedTodo = Number(req.params.id);
