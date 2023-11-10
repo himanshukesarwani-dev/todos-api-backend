@@ -1,6 +1,6 @@
 import { type Request, type Response, type NextFunction } from "express";
 import { z } from "zod";
-import { customErrorClass } from "../errors/customError.js";
+import { CustomError } from "../errors/customError.js";
 
 /**
  * Express middleware for handling errors and generating appropriate error responses.
@@ -28,8 +28,8 @@ export const errorHandler = (
       .json({ error: `Validation Error: ${allErrorMessages}` });
   }
 
-  // checking if the error is instance of customErrorClass
-  else if (err instanceof customErrorClass) {
+  // checking if the error is instance of CustomError
+  else if (err instanceof CustomError) {
     return res.status(err.statusCode).json({ error: err.message });
   }
 
