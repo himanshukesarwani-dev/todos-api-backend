@@ -8,7 +8,13 @@ import { asyncControllerWrapper } from "../utility/asyncControllerWrapper.js";
 
 type Todo = z.infer<typeof todoSchema>;
 
-// POST todo API
+/**
+ * Creates a new todo item.
+ * @param {Request} req - The Express Request object.
+ * @param {Response} res - The Express Response object.
+ * @param {NextFunction} next - The Express NextFunction to pass control to the next middleware.
+ *
+ */
 
 export const createTodo = asyncControllerWrapper(
   async (req: Request, res: Response, next: NextFunction) => {
