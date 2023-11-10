@@ -10,12 +10,8 @@ type Todo = z.infer<typeof todoSchema>;
 
 // POST todo API
 
-export const createTodo = async (
-  req: Request,
-  res: Response,
-  next: NextFunction
-) => {
-  try {
+export const createTodo = asyncControllerWrapper(
+  async (req: Request, res: Response, next: NextFunction) => {
     const { description, title, dueDate, completed } = req.body;
 
     const createdAt = new Date().toISOString();
@@ -37,10 +33,8 @@ export const createTodo = async (
     const dataValidated = await todoManager.validateTodo(todo);
     const newTodo = await todoManager.createTodo(dataValidated);
     res.status(201).json(newTodo);
-  } catch (error) {
-    next(error);
   }
-};
+);
 
 /**
  * Retrieves a list of all todos from the data source and sends a response with the todos in JSON format.
