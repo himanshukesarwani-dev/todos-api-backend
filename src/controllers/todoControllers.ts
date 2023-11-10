@@ -47,17 +47,12 @@ export const createTodo = async (
  *
  * @param {Request} req - The Express Request object, which contains information about the HTTP request.
  * @param {Response} res - The Express Response object, used to send the HTTP response.
- * @throws {Error} - If an error occurs during the data retrieval process, an error response is sent.
- * @param {NextFunction} - The next function to pass control to the next middleware.
+ * @param {NextFunction} next - The next function to pass control to the next middleware.
 
  */
 
-export const getAllTodos = async (
-  req: Request,
-  res: Response,
-  next: NextFunction
-) => {
-  try {
+export const getAllTodos = asyncControllerWrapper(
+  async (req: Request, res: Response, next: NextFunction) => {
     const todoManager = new TodoManager();
     const length = await todoManager.getLengthOfTodos();
 
@@ -87,10 +82,8 @@ export const getAllTodos = async (
     } else {
       throw createCustomError(404, "Error 404: No Todos Found");
     }
-  } catch (error) {
-    next(error);
   }
-};
+);
 
 /**
  * Retrieves a single todo based on the provided ID and sends a response with the todo in JSON format.
