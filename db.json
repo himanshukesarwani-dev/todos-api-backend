@@ -37,6 +37,7 @@
       "title": " sdfsadfasf",
       "description": "new data",
       "dueDate": "2023-10-31",
+      "completed": true,
       "createdAt": "2023-11-03T09:48:59.875Z",
       "updatedAt": "2023-11-03T09:48:59.875Z"
     },
@@ -207,6 +208,42 @@
       "completed": false,
       "createdAt": "2023-11-10T14:41:39.634Z",
       "updatedAt": "2023-11-10T14:41:39.634Z"
+    },
+    {
+      "id": 26,
+      "title": "Test Todo",
+      "description": "This is a test todo.",
+      "dueDate": "2023-12-31",
+      "completed": false,
+      "createdAt": "2023-11-10T14:55:49.209Z",
+      "updatedAt": "2023-11-10T14:55:49.209Z"
+    },
+    {
+      "id": 27,
+      "title": "valid test title",
+      "description": "This is a valid test todo.",
+      "dueDate": "2023-12-31",
+      "completed": false,
+      "createdAt": "2023-11-10T14:55:49.245Z",
+      "updatedAt": "2023-11-10T14:55:49.245Z"
+    },
+    {
+      "id": 28,
+      "title": "Test Todo",
+      "description": "This is a test todo.",
+      "dueDate": "2023-12-31",
+      "completed": false,
+      "createdAt": "2023-11-10T15:57:48.025Z",
+      "updatedAt": "2023-11-10T15:57:48.025Z"
+    },
+    {
+      "id": 29,
+      "title": "valid test title",
+      "description": "This is a valid test todo.",
+      "dueDate": "2023-12-31",
+      "completed": false,
+      "createdAt": "2023-11-10T15:57:48.061Z",
+      "updatedAt": "2023-11-10T15:57:48.061Z"
     }
   ]
 }
