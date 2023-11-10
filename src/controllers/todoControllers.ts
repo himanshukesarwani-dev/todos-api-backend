@@ -4,6 +4,7 @@ import { TodoManager } from "../model/todoManager.js";
 import { todoSchema } from "../model/todoSchema.js";
 import { NextFunction, type Request, type Response } from "express";
 import { createCustomError } from "../errors/customError.js";
+import { asyncControllerWrapper } from "../utility/asyncControllerWrapper.js";
 
 type Todo = z.infer<typeof todoSchema>;
 
@@ -99,13 +100,9 @@ export const getAllTodos = async (
  * @param {Response} res - The Express Response object, used to send the HTTP response.
  * @param {NextFunction} - The next function to pass control to the next middleware.
  */
-export const getATodo = async (
-  req: Request,
-  res: Response,
-  next: NextFunction
-) => {
-  const requestedTodo = Number(req.params.id);
-  try {
+export const getATodo = asyncControllerWrapper(
+  async (req: Request, res: Response, next: NextFunction) => {
+    const requestedTodo = Number(req.params.id);
     const todoManager = new TodoManager();
     const todo = await todoManager.getATodo(requestedTodo);
     if (todo) {
@@ -116,7 +113,5 @@ export const getATodo = async (
         `Error! Requested Todo with ID ${req.params.id} doesn't exist.`
       );
     }
-  } catch (error) {
-    next(error);
   }
-};
+);
