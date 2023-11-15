@@ -132,7 +132,7 @@ export const updateTodo = asyncControllerWrapper(
         dueDate,
         completed: completed || existingTodo.completed,
         createdAt: existingTodo.createdAt,
-        updatedAt: existingTodo.updatedAt
+        updatedAt: new Date().toISOString()
       };
 
       const todoValidated = await todoManager.validateTodo(todo);
