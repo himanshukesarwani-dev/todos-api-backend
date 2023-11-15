@@ -24,8 +24,7 @@ export const createTodo = asyncControllerWrapper(
     const updatedAt = createdAt;
 
     const todoManager = new TodoManager();
-    const id = (await todoManager.getLengthOfTodos()) + 1;
-    // console.log(id);
+    const id = (await todoManager.getHighestTodoId()) + 1;
     const todo: Todo = {
       id,
       title,

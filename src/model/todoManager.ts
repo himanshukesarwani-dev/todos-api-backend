@@ -74,4 +74,22 @@ export class TodoManager {
     const todo = allTodos.find((todo) => todo.id === id);
     return todo;
   }
+
+  /**
+   * getHighestTodoId method is used to retrieve the highest ID among existing todos from the database.
+   * @returns {Promise<number>} A Promise that resolves to the highest todo ID.
+   */
+
+  async getHighestTodoId(): Promise<number> {
+    await this.db.read();
+    let highestId;
+    const allTodos = this.db.data.todos;
+    if (allTodos.length === 0) {
+      highestId = -1;
+    } else {
+      const allTodosId = allTodos.map((todo) => todo.id);
+      highestId = Math.max(...allTodosId);
+    }
+    return highestId;
+  }
 }
