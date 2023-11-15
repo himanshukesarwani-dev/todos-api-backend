@@ -144,6 +144,17 @@ export const updateTodo = asyncControllerWrapper(
   }
 );
 
+/**
+ * deleteTodo is a controller function that asynchronously deletes a Todo item from the database.
+ *
+ * This function handles the HTTP DELETE request for deleting a Todo based on its ID.
+ *
+ * @param {Request} req - Express Request object containing parameters and other request data.
+ * @param {Response} res - Express Response object for sending the HTTP response.
+ * @param {NextFunction} next - Express NextFunction for error handling and passing control to the next middleware.
+ *
+ */
+
 export const deleteTodo = asyncControllerWrapper(
   async (req: Request, res: Response, next: NextFunction) => {
     const id = Number(req.params.id);
