@@ -18,11 +18,12 @@
     },
     {
       "id": 3,
-      "title": " 4-todos",
-      "description": "new data",
-      "dueDate": "2023-10-31",
+      "title": "Test Todo updated",
+      "description": "This is a test todo updated.",
+      "dueDate": "2023-12-31",
       "createdAt": "2023-11-03T09:48:46.613Z",
-      "updatedAt": "2023-11-03T09:48:46.613Z"
+      "updatedAt": "2023-11-03T09:48:46.613Z",
+      "completed": false
     },
     {
       "id": 4,
@@ -34,12 +35,12 @@
     },
     {
       "id": 5,
-      "title": " sdfsadfasf",
-      "description": "new data",
-      "dueDate": "2023-10-31",
+      "title": "new todo title ",
+      "description": "this is a test todo updated",
+      "dueDate": "2023-11-22",
       "completed": true,
       "createdAt": "2023-11-03T09:48:59.875Z",
-      "updatedAt": "2023-11-03T09:48:59.875Z"
+      "updatedAt": "2023-11-15T07:58:04.576Z"
     },
     {
       "id": 6,
@@ -75,11 +76,12 @@
     },
     {
       "id": 10,
-      "title": "todocreated",
-      "description": "new data",
-      "dueDate": "2023-10-31",
+      "title": "Todo updated",
+      "description": "todo updated with id 10.",
+      "dueDate": "2023-12-31",
       "createdAt": "2023-11-03T11:56:56.432Z",
-      "updatedAt": "2023-11-03T11:56:56.432Z"
+      "updatedAt": "2023-11-03T11:56:56.432Z",
+      "completed": true
     },
     {
       "id": 11,
@@ -157,9 +159,9 @@
     },
     {
       "id": 20,
-      "title": "Test Todo",
-      "description": "This is a test todo.",
-      "dueDate": "2023-12-31",
+      "title": "new todo title ",
+      "description": "this is a test todo updated",
+      "dueDate": "2023-11-22",
       "completed": false,
       "createdAt": "2023-11-10T14:09:50.364Z",
       "updatedAt": "2023-11-10T14:09:50.364Z"
@@ -244,6 +246,15 @@
       "completed": false,
       "createdAt": "2023-11-10T15:57:48.061Z",
       "updatedAt": "2023-11-10T15:57:48.061Z"
+    },
+    {
+      "id": 30,
+      "title": "valid test title",
+      "description": "This is a valid test todo.",
+      "dueDate": "2023-12-31",
+      "completed": false,
+      "createdAt": "2023-11-15T06:56:13.854Z",
+      "updatedAt": "2023-11-15T06:56:13.854Z"
     }
   ]
 }

@@ -24,8 +24,7 @@ export const createTodo = asyncControllerWrapper(
     const updatedAt = createdAt;
 
     const todoManager = new TodoManager();
-    const id = (await todoManager.getLengthOfTodos()) + 1;
-    // console.log(id);
+    const id = (await todoManager.getHighestTodoId()) + 1;
     const todo: Todo = {
       id,
       title,
@@ -105,6 +104,42 @@ export const getATodo = asyncControllerWrapper(
         404,
         `Error! Requested Todo with ID ${req.params.id} doesn't exist.`
       );
+    }
+  }
+);
+
+/**
+ * updateTodo is a controller function that asynchronously updates a Todo item in the database.
+ *
+ * @param {Request} req - Express Request object.
+ * @param {Response} res - Express Response object.
+ * @param {NextFunction} next - Express NextFunction for error handling.
+ * */
+
+export const updateTodo = asyncControllerWrapper(
+  async (req: Request, res: Response, next: NextFunction) => {
+    const id = Number(req.params.id);
+
+    const todoManager = new TodoManager();
+    const existingTodo = await todoManager.getATodo(id);
+    const { title, description, dueDate, completed } = req.body;
+
+    if (existingTodo) {
+      const todo: Todo = {
+        id,
+        title,
+        description,
+        dueDate,
+        completed: completed || existingTodo.completed,
+        createdAt: existingTodo.createdAt,
+        updatedAt: new Date().toISOString()
+      };
+
+      const todoValidated = await todoManager.validateTodo(todo);
+      const updatedTodo = await todoManager.updateTodo(id, todoValidated);
+      res.status(200).json(updatedTodo);
+    } else {
+      throw createCustomError(404, `Todo with id ${req.params.id} not found`);
     }
   }
 );
