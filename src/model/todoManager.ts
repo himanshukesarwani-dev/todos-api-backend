@@ -93,6 +93,13 @@ export class TodoManager {
     return highestId;
   }
 
+  /**
+   * updateTodo method asynchronously updates a Todo item in the database based on its ID.
+   * @param {number} id - Unique identifier of the Todo item.
+   * @param {Todo} todo - Updated Todo object.
+   * @returns {Promise<Todo>} A Promise that resolves to the updated Todo.
+   */
+
   async updateTodo(id: number, todo: Todo): Promise<Todo> {
     await this.db.read();
     const todoToUpdate = this.db.data.todos.find(
