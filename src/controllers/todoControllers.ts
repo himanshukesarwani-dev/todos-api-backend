@@ -107,3 +107,31 @@ export const getATodo = asyncControllerWrapper(
     }
   }
 );
+
+export const updateTodo = asyncControllerWrapper(
+  async (req: Request, res: Response, next: NextFunction) => {
+    const id = Number(req.params.id);
+
+    const todoManager = new TodoManager();
+    const existingTodo = await todoManager.getATodo(id);
+    const { title, description, dueDate, completed } = req.body;
+
+    if (existingTodo) {
+      const todo: Todo = {
+        id,
+        title,
+        description,
+        dueDate,
+        completed: completed || existingTodo.completed,
+        createdAt: existingTodo.createdAt,
+        updatedAt: existingTodo.updatedAt
+      };
+
+      const todoValidated = await todoManager.validateTodo(todo);
+      const updatedTodo = await todoManager.updateTodo(id, todoValidated);
+      res.status(200).json(updatedTodo);
+    } else {
+      throw createCustomError(404, `Todo with id ${req.params.id} not found`);
+    }
+  }
+);
