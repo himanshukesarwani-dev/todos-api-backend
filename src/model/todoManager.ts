@@ -115,4 +115,13 @@ export class TodoManager {
     await this.db.write();
     return todoToUpdate;
   }
+
+  async deleteTodo(id: number): Promise<void> {
+    await this.db.read();
+    const indexToDelete = this.db.data.todos.findIndex(
+      (todo) => todo.id === id
+    );
+    this.db.data.todos.splice(indexToDelete, 1);
+    await this.db.write();
+  }
 }
