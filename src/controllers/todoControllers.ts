@@ -143,3 +143,24 @@ export const updateTodo = asyncControllerWrapper(
     }
   }
 );
+
+export const deleteTodo = asyncControllerWrapper(
+  async (req: Request, res: Response, next: NextFunction) => {
+    const id = Number(req.params.id);
+
+    const todoManager = new TodoManager();
+    const existingTodo = await todoManager.getATodo(id);
+
+    if (existingTodo) {
+      await todoManager.deleteTodo(id);
+      res
+        .status(200)
+        .json({ message: `todo deleted successfully with id ${id}` });
+    } else {
+      throw createCustomError(
+        404,
+        `Cannot find the todo with id ${req.params.id}`
+      );
+    }
+  }
+);
