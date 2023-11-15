@@ -108,6 +108,14 @@ export const getATodo = asyncControllerWrapper(
   }
 );
 
+/**
+ * updateTodo is a controller function that asynchronously updates a Todo item in the database.
+ *
+ * @param {Request} req - Express Request object.
+ * @param {Response} res - Express Response object.
+ * @param {NextFunction} next - Express NextFunction for error handling.
+ * */
+
 export const updateTodo = asyncControllerWrapper(
   async (req: Request, res: Response, next: NextFunction) => {
     const id = Number(req.params.id);
