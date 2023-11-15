@@ -1,6 +1,14 @@
 {
   "todos": [
     {
+      "id": 0,
+      "title": "new on 30 oct",
+      "description": "Finish the report by 5 PM",
+      "dueDate": "2023-10-31",
+      "createdAt": "2023-10-30T05:03:37.524Z",
+      "updatedAt": "2023-10-30T05:03:37.524Z"
+    },
+    {
       "id": 1,
       "title": "new on 30 oct",
       "description": "Finish the report by 5 PM",
@@ -237,24 +245,6 @@
       "completed": false,
       "createdAt": "2023-11-10T15:57:48.025Z",
       "updatedAt": "2023-11-10T15:57:48.025Z"
-    },
-    {
-      "id": 29,
-      "title": "valid test title",
-      "description": "This is a valid test todo.",
-      "dueDate": "2023-12-31",
-      "completed": false,
-      "createdAt": "2023-11-10T15:57:48.061Z",
-      "updatedAt": "2023-11-10T15:57:48.061Z"
-    },
-    {
-      "id": 30,
-      "title": "valid test title",
-      "description": "This is a valid test todo.",
-      "dueDate": "2023-12-31",
-      "completed": false,
-      "createdAt": "2023-11-15T06:56:13.854Z",
-      "updatedAt": "2023-11-15T06:56:13.854Z"
     }
   ]
 }
