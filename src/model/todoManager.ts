@@ -116,6 +116,13 @@ export class TodoManager {
     return todoToUpdate;
   }
 
+  /**
+   * Deletes a Todo item asynchronously from the database by ID.
+   * @param {number} id - ID of the Todo to be deleted.
+   * @returns {Promise<void>} - Resolves when the Todo is successfully deleted.
+   *
+   */
+
   async deleteTodo(id: number): Promise<void> {
     await this.db.read();
     const indexToDelete = this.db.data.todos.findIndex(
