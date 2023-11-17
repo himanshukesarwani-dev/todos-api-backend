@@ -20,9 +20,6 @@ export class TodoManager {
    * Constructor for initializing a database instance.
    */
   constructor() {
-    // const adapter = new JSONFile<AllTodosType>("db.json");
-    // this.db = new Low(adapter, { todos: [] });
-
     if (process.env.NODE_ENV === "production") {
       const adapter = new JSONFile<AllTodosType>(dbName);
       this.db = new Low(adapter, { todos: [] });
