@@ -2,6 +2,11 @@ import { Low } from "lowdb";
 import { JSONFile } from "lowdb/node";
 import { z } from "zod";
 import { todoSchema } from "../model/todoSchema.js";
+import config from "config";
+import dotenv from "dotenv";
+
+dotenv.config();
+const dbName: string = config.get(`${process.env.NODE_ENV}.dbName`);
 
 type Todo = z.infer<typeof todoSchema>;
 export interface AllTodosType {
@@ -15,8 +20,16 @@ export class TodoManager {
    * Constructor for initializing a database instance.
    */
   constructor() {
-    const adapter = new JSONFile<AllTodosType>("db.json");
-    this.db = new Low(adapter, { todos: [] });
+    // const adapter = new JSONFile<AllTodosType>("db.json");
+    // this.db = new Low(adapter, { todos: [] });
+
+    if (process.env.NODE_ENV === "production") {
+      const adapter = new JSONFile<AllTodosType>(dbName);
+      this.db = new Low(adapter, { todos: [] });
+    } else {
+      const adapter = new JSONFile<AllTodosType>(dbName);
+      this.db = new Low(adapter, { todos: [] });
+    }
   }
 
   /**
