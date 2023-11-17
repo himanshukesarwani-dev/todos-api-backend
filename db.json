@@ -18,11 +18,12 @@
     },
     {
       "id": 2,
-      "title": "2 on 30 oct",
-      "description": "Finish the report by 5 PM",
-      "dueDate": "2023-10-31",
+      "title": "dev todo ",
+      "description": " todo in development",
+      "dueDate": "2023-11-22",
       "createdAt": "2023-10-30T05:57:50.083Z",
-      "updatedAt": "2023-10-30T05:57:50.083Z"
+      "updatedAt": "2023-11-17T05:52:10.242Z",
+      "completed": false
     },
     {
       "id": 3,
